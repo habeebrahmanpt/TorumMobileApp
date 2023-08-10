@@ -3,7 +3,6 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import style from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import ToastHelper from 'utils/toast-helper';
-import CustomIcon from 'components/ui/custom-icon';
 import Colors from 'themes/Colors';
 import { InputTextField } from 'components/ui/text-input';
 import { PrimaryButton } from 'components/ui/button';
@@ -61,8 +60,11 @@ function SignInWithEmail({ navigation }: any) {
                     JSON.stringify(response?.data?.user),
                 );
                 dispatch(setUser(response?.data?.user));
+                successToast();
+                navigateToHome();
             })
             .catch(error => {
+                console.log(error);
                 failedToast();
             });
     };

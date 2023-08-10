@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    Button,
-    Dimensions,
     FlatList,
     Image,
     Text,
@@ -12,9 +10,8 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from 'navigation/StackParamList';
-import appColors from 'themes/Colors';
 import style from './style';
-import { Colors, Images } from '../../themes';
+import { Colors } from '../../themes';
 import appImages from 'themes/Images';
 import apiClient from 'api/api-client';
 import AppHeader from 'components/ui/app-header';
@@ -33,28 +30,32 @@ const FeedDetails = () => {
     const route: any = useRoute();
     const slug = route.params;
     useEffect(() => {
-        getFeeds(slug);
-    }, []);
+        getFeeds();
+    }, [slug]);
 
-    const getFeeds = (slug: any) => {
+    const getFeeds = () => {
         apiClient
             .getFeedDetails(slug)
             .then(response => {
                 // console.log('API response : ', JSON.stringify(response?.data))
                 setFeedsData(response.data?.article);
             })
-            .catch(error => {});
-        getFeedComments(slug);
+            .catch(error => {
+                console.log('API error : ', JSON.stringify(error));
+            });
+        getFeedComments();
     };
 
-    const getFeedComments = (slug: any) => {
+    const getFeedComments = () => {
         apiClient
             .getFeedComments(slug, 200, 0)
             .then(response => {
                 // console.log('API getFeedComments : ', JSON.stringify(response?.data))
                 setCommentData(response.data?.comments);
             })
-            .catch(error => {});
+            .catch(error => {
+                console.log('API err : ', JSON.stringify(error));
+            });
     };
 
     const onPressLeft = async () => {
@@ -150,7 +151,7 @@ const FeedDetails = () => {
                     </Text>
                 </View>
                 <View style={style.reactionContainer}>
-                    <TouchableOpacity onPress={() => {}}>
+                    <TouchableOpacity>
                         {feedsData?.favorited ? (
                             <Icon
                                 name="favorite"
@@ -162,7 +163,7 @@ const FeedDetails = () => {
                         )}
                     </TouchableOpacity>
                     <Text style={style.count}>{feedsData?.favoritesCount}</Text>
-                    <TouchableOpacity onPress={() => {}}>
+                    <TouchableOpacity>
                         <Image
                             source={appImages.comment}
                             style={style.comment}
@@ -177,15 +178,15 @@ const FeedDetails = () => {
     };
 
     const commentHandler = () => {
-        postFeedComment(slug);
+        postFeedComment();
     };
-    const postFeedComment = (slug: any) => {
+    const postFeedComment = () => {
         const requestObj = { comment: { body: comment } };
         apiClient
             .postFeedComment(slug, requestObj)
-            .then(response => {
+            .then(() => {
                 setComment('');
-                getFeedComments(slug);
+                getFeedComments();
             })
             .catch(error => {
                 console.log('API response : 3', JSON.stringify(error));

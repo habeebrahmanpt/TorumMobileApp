@@ -1,6 +1,5 @@
-import { PixelRatio, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Colors from 'themes/Colors';
-import { px } from 'themes/Metrics';
 
 export default StyleSheet.create({
     container: {

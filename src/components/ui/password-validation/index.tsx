@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const checkPasswordValidity = (password: any) => {
     if (password.match(/[A-Z]/) === null) {
         return 'Password must have at least one Uppercase Character.';

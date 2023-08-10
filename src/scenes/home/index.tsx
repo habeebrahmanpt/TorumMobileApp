@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Button,
-    Dimensions,
-    FlatList,
-    Image,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from 'navigation/StackParamList';
-import appColors from 'themes/Colors';
 import style from './style';
-import { Colors, Images } from '../../themes';
+import { Colors } from '../../themes';
 import appImages from 'themes/Images';
 import apiClient from 'api/api-client';
 import AppHeader from 'components/ui/app-header';
@@ -36,12 +27,10 @@ const HomeScreen = () => {
             .then(response => {
                 setFeedsData(response.data?.articles);
             })
-            .catch(error => {});
+            .catch(error => {
+                console.log('API error', error);
+            });
     };
-
-    const imageHandler = async () => {};
-
-    const addPost = () => {};
 
     const goToFeedDetails = (slug: any) => {
         navigation.navigate('FeedDetails', slug);
@@ -94,7 +83,7 @@ const HomeScreen = () => {
                     </TouchableOpacity>
                 )}
                 <View style={style.reactionContainer}>
-                    <TouchableOpacity onPress={() => {}}>
+                    <TouchableOpacity>
                         {item?.favorited ? (
                             <Icon
                                 name="favorite"
@@ -106,7 +95,7 @@ const HomeScreen = () => {
                         )}
                     </TouchableOpacity>
                     <Text style={style.count}>{item?.favoritesCount}</Text>
-                    <TouchableOpacity onPress={() => {}}>
+                    <TouchableOpacity>
                         <Image
                             source={appImages.comment}
                             style={style.comment}
@@ -127,7 +116,6 @@ const HomeScreen = () => {
                 leftIcon={'camera'}
                 rightIcon={'file-text2'}
                 onPressLeft={imageHandler}
-                onPressRight={addPost}
             />
             {feedsData ? (
                 <FlatList
