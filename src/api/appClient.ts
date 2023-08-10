@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { APIRoutes } from './api-routes';
+import { store } from '../store';
 
 
 
@@ -9,18 +10,22 @@ const appClient = axios.create({
     timeout: 5 * 60 * 1000,
 });
 
-// apiClient.interceptors.request.use(
-//   function (config) {
+appClient.interceptors.request.use(
+    function (config) {
+        const state = store.getState();
+        if (state?.userData?.user) {
+            config.headers['Authorization'] = 'Bearer ' + state?.userData?.user?.['token']
+        }
+        // console.log('ttttttt',config.headers);
+        return config;
+    },
+    function (error) {
 
-//     return config;
-//   },
-//   function (error) {
-
-//     console.log('error in axios', error);
-//     // Do something with request error
-//     return Promise.reject(error);
-//   },
-// );
+        console.log('error in axios', error);
+        // Do something with request error
+        return Promise.reject(error);
+    },
+);
 
 appClient.interceptors.response.use(
     function (response) {
