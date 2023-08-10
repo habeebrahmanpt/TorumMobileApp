@@ -61,7 +61,7 @@ export default StyleSheet.create({
     postDescription: {
         maxHeight: '100%',
         maxWidth: '100%',
-        justifyContent: "center",
+        justifyContent: 'center',
     },
     caption: {
         fontSize: 15,
@@ -91,7 +91,7 @@ export default StyleSheet.create({
     comment: {
         height: 26,
         width: 26,
-        marginLeft: 15
+        marginLeft: 15,
     },
     count: {
         fontSize: 14,
@@ -102,16 +102,14 @@ export default StyleSheet.create({
         height: 35,
         width: 35,
         right: 0,
-
     },
     userContainer: {
         flexDirection: 'row',
     },
     moreContainer: {
-        marginLeft: 20
+        marginLeft: 20,
     },
-    flatListStyles: {
-    },
+    flatListStyles: {},
     items: {
         flex: 1,
         padding: 8,
@@ -123,7 +121,7 @@ export default StyleSheet.create({
         padding: 8,
         borderRadius: 8,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     stringsContainer: {
         width: '80%',
@@ -142,17 +140,17 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         marginVertical: 2,
         marginLeft: '5%',
-        color: Colors.welcomePageText
+        color: Colors.welcomePageText,
     },
     captionTextContainer: {
         // flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     captionTime: {
         fontSize: 12,
         fontWeight: 'bold',
         marginRight: '5%',
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
     },
     comments: {
         fontSize: 14,
@@ -191,11 +189,11 @@ export default StyleSheet.create({
         paddingVertical: 2,
         paddingHorizontal: 5,
         borderRadius: 5,
-        backgroundColor: Colors.appTheme
+        backgroundColor: Colors.appTheme,
     },
     followingText: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: Colors.white
-    }
+        color: Colors.white,
+    },
 });

@@ -1,16 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 
-import counterReducer from './reducers/counterSlice'
-import userReducer from './reducers/user-data'
+import counterReducer from './reducers/counterSlice';
+import userReducer from './reducers/user-data';
 // import { combineReducers } from 'redux'
 
 export const store = configureStore({
-    reducer:
-    {
+    reducer: {
         counter: counterReducer,
         userData: userReducer,
-    }
+    },
     // combineReducers({
     //     counter: counterReducer,
     // })
-})
+});

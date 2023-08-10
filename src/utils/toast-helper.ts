@@ -6,6 +6,6 @@ export enum ToastLength {
 
 export default class ToastHelper {
     static show(message: string, toastLength = ToastLength.SHORT): void {
-        Toast.show(message, toastLength); 
+        Toast.show(message, toastLength);
     }
 }

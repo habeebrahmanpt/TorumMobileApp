@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 import CustomIcon from '../custom-icon';
-import Colors from '../../../themes/Colors'; 
+import Colors from '../../../themes/Colors';
 
 interface PropTypes {
     style?: any;
@@ -28,12 +28,21 @@ export default function AppHeader(props: PropTypes) {
                     {props.leftIcon ? (
                         <CustomIcon
                             name={props.leftIcon}
-                            color={props.leftIconColor ? props.leftIconColor : Colors.black}
+                            color={
+                                props.leftIconColor
+                                    ? props.leftIconColor
+                                    : Colors.black
+                            }
                             size={23}
                         />
                     ) : null}
                     {props.previousScreen && (
-                        <Text style={props.previousScreenStyle ? props.previousScreenStyle : styles.previousScreenLabel}>
+                        <Text
+                            style={
+                                props.previousScreenStyle
+                                    ? props.previousScreenStyle
+                                    : styles.previousScreenLabel
+                            }>
                             {props.previousScreen}
                         </Text>
                     )}
@@ -44,11 +53,17 @@ export default function AppHeader(props: PropTypes) {
                 <TouchableOpacity
                     style={styles.rightIcon}
                     onPress={props.onPressRight ? props.onPressRight : null}>
-                    {props.rightIcon ? (<CustomIcon
-                        name={props.rightIcon}
-                        color={props.rightIconColor ? props.rightIconColor : Colors.black}
-                        size={23}
-                    />) : null}
+                    {props.rightIcon ? (
+                        <CustomIcon
+                            name={props.rightIcon}
+                            color={
+                                props.rightIconColor
+                                    ? props.rightIconColor
+                                    : Colors.black
+                            }
+                            size={23}
+                        />
+                    ) : null}
                     {props.nextScreen && (
                         <Text style={styles.nextScreenLabel}>
                             {props.nextScreen}

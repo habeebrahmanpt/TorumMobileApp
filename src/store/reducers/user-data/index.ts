@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const userSlice = createSlice({
     name: 'userData',
@@ -11,15 +11,15 @@ export const userSlice = createSlice({
             // doesn't actually mutate the state because it uses the Immer library,
             // which detects changes to a "draft state" and produces a brand new
             // immutable state based off those changes
-            state.user = action.payload
+            state.user = action.payload;
         },
-        clearUser: (state) => {
-            state.user = null
+        clearUser: state => {
+            state.user = null;
         },
     },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setUser, clearUser } = userSlice.actions
-export const getUserDetails = (state: any) => state?.userData?.value
-export default userSlice.reducer
+export const { setUser, clearUser } = userSlice.actions;
+export const getUserDetails = (state: any) => state?.userData?.value;
+export default userSlice.reducer;

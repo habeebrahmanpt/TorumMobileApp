@@ -2,12 +2,11 @@ const size = {};
 
 const style = {};
 const type = {
-  base: 'DMSans-Regular',
- 
+    base: 'DMSans-Regular',
 };
 const appFont = {
-  type,
-  size,
-  style,
+    type,
+    size,
+    style,
 };
 export default appFont;

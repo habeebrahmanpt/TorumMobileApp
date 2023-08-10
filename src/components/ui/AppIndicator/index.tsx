@@ -4,14 +4,15 @@ import Colors from '../../../themes/Colors';
 import Styles from './style';
 
 function AppIndicator(props: any) {
-	return (
-		<View style={Styles.appActivityContainer}>
-			<ActivityIndicator
-				{...props}
-				color={
-					props.color ? props.color : Colors.activityIndicatorColor
-				}></ActivityIndicator>
-		</View>
-	);
+    return (
+        <View style={Styles.appActivityContainer}>
+            <ActivityIndicator
+                {...props}
+                color={
+                    props.color ? props.color : Colors.activityIndicatorColor
+                }
+            />
+        </View>
+    );
 }
 export default AppIndicator;

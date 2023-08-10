@@ -62,7 +62,7 @@ export default StyleSheet.create({
     postDescription: {
         maxHeight: '100%',
         maxWidth: '100%',
-        justifyContent: "center",
+        justifyContent: 'center',
 
         height: 250,
     },
@@ -94,7 +94,7 @@ export default StyleSheet.create({
     comment: {
         height: 26,
         width: 26,
-        marginLeft: 15
+        marginLeft: 15,
     },
     count: {
         fontSize: 14,
@@ -105,14 +105,12 @@ export default StyleSheet.create({
         height: 35,
         width: 35,
         right: 0,
-
     },
     userContainer: {
         flexDirection: 'row',
     },
     moreContainer: {
-        marginLeft: 20
+        marginLeft: 20,
     },
-    flatListStyles: {
-    }
+    flatListStyles: {},
 });

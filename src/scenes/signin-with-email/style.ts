@@ -7,76 +7,72 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.appThemeSecondaryColor,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     signInTextView: {
-        paddingVertical: "4%",
+        paddingVertical: '4%',
     },
     signInText: {
         fontSize: 29,
         color: Colors.signInText,
-        fontWeight: "bold"
+        fontWeight: 'bold',
     },
     signInImage: {
         width: 220,
-        height: 70
+        height: 70,
     },
     emailStyles: {
         marginTop: 30,
-        width: "95%",
+        width: '95%',
         marginHorizontal: 11,
         borderColor: Colors.placeholderText,
     },
     passwordStyle: {
         marginTop: 20,
         marginHorizontal: 11,
-        width: "95%",
+        width: '95%',
         borderRadius: 25,
         borderColor: Colors.placeholderText,
     },
     textInputStyle: {
         fontSize: 16,
-        fontWeight: "bold",
-        color: Colors.placeholderText
+        fontWeight: 'bold',
+        color: Colors.placeholderText,
     },
-    forgotPasswordStyles: {
-    },
+    forgotPasswordStyles: {},
     forgetPasswordText: {
         fontSize: 16,
         color: Colors.appTheme,
-        fontWeight: "bold"
+        fontWeight: 'bold',
     },
     buttonStyles: {
         borderRadius: 30,
         backgroundColor: Colors.loginButton,
         padding: 12,
-        width: "85%",
-        alignItems: "center",
+        width: '85%',
+        alignItems: 'center',
     },
     LoginContainer: {
-        marginTop: "10%",
+        marginTop: '10%',
     },
     buttonText: {
         color: Colors.buttonLabel,
-        fontWeight: "bold",
-        fontSize: 18
+        fontWeight: 'bold',
+        fontSize: 18,
     },
     ORtext: {
-        fontWeight: "bold",
-        marginTop: "10%",
+        fontWeight: 'bold',
+        marginTop: '10%',
         fontSize: 15,
-        color: Colors.black
+        color: Colors.black,
     },
     skipButton: {
-        marginTop: "5%",
-        alignItems: "center"
-
+        marginTop: '5%',
+        alignItems: 'center',
     },
     iconStyle: {
         left: 310,
         bottom: 30,
-        color: Colors.appTheme
-    }
-
-
+        color: Colors.appTheme,
+    },
 });

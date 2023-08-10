@@ -11,11 +11,14 @@ const RootNavigation = (): JSX.Element => {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name={'SignInWithEmail'} component={SignInWithEmail} />
+                <Stack.Screen
+                    name={'SignInWithEmail'}
+                    component={SignInWithEmail}
+                />
                 <Stack.Screen name={'Home'} component={HomeScreen} />
                 <Stack.Screen name={'FeedDetails'} component={FeedDetails} />
             </Stack.Navigator>
         </NavigationContainer>
-    )
-}
+    );
+};
 export default RootNavigation;

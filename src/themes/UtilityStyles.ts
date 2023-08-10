@@ -34,6 +34,5 @@ export default StyleSheet.create({
     },
     mb32: {
         marginBottom: 32,
-    }
+    },
 });
-

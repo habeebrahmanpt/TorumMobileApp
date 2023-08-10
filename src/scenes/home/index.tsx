@@ -22,40 +22,43 @@ import { timeConverter } from 'utils/time-converter';
 import AppIndicator from 'components/ui/AppIndicator';
 
 const HomeScreen = () => {
-    const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
+    const navigation =
+        useNavigation<NativeStackNavigationProp<StackParamList>>();
     const [feedsData, setFeedsData] = useState<any>(null);
 
     useEffect(() => {
         getFeeds();
-    }, [])
+    }, []);
 
     const getFeeds = () => {
-
-        apiClient.getFeeds(20, 0).then((response) => {
-            setFeedsData(response.data?.articles)
-        }).catch((error) => {
-
-        })
-    }
-
-    const imageHandler = async () => {
+        apiClient
+            .getFeeds(20, 0)
+            .then(response => {
+                setFeedsData(response.data?.articles);
+            })
+            .catch(error => {});
     };
 
-    const addPost = () => {
-    }
+    const imageHandler = async () => {};
+
+    const addPost = () => {};
 
     const goToFeedDetails = (slug: any) => {
         navigation.navigate('FeedDetails', slug);
-    }
+    };
     const Item = ({ item }: any) => {
-
         return (
             <View style={style.item}>
                 <View style={style.userContainer}>
                     <View style={style.imageContainer}>
-                        <Image source={{ uri: item?.author?.image }} style={style.image} />
+                        <Image
+                            source={{ uri: item?.author?.image }}
+                            style={style.image}
+                        />
                         <View style={style.text}>
-                            <Text style={style.title}>{item?.author?.username}</Text>
+                            <Text style={style.title}>
+                                {item?.author?.username}
+                            </Text>
                             <View style={style.strings}>
                                 <Text style={style.time}>
                                     {timeConverter(item?.createdAt)}
@@ -71,28 +74,47 @@ const HomeScreen = () => {
                 </View>
                 <Text style={style.caption}>{item?.title}</Text>
                 {item?.image ? (
-                    <TouchableOpacity onPress={() => goToFeedDetails(item?.slug)}>
-                        <Image source={{ uri: item?.image }} style={style.postImage} />
+                    <TouchableOpacity
+                        onPress={() => goToFeedDetails(item?.slug)}>
+                        <Image
+                            source={{ uri: item?.image }}
+                            style={style.postImage}
+                        />
                     </TouchableOpacity>
-                ) :
-                    <TouchableOpacity style={style.postDescription} onPress={() => goToFeedDetails(item?.slug)}>
-                        <Text style={style.description} numberOfLines={8}>{item?.description}</Text>
-                        <Text style={style.descriptionBody} numberOfLines={8}>{item?.body}</Text>
-                    </TouchableOpacity>}
+                ) : (
+                    <TouchableOpacity
+                        style={style.postDescription}
+                        onPress={() => goToFeedDetails(item?.slug)}>
+                        <Text style={style.description} numberOfLines={8}>
+                            {item?.description}
+                        </Text>
+                        <Text style={style.descriptionBody} numberOfLines={8}>
+                            {item?.body}
+                        </Text>
+                    </TouchableOpacity>
+                )}
                 <View style={style.reactionContainer}>
-                    <TouchableOpacity onPress={() => { }}>
-                        {(item?.favorited) ?
-                            <Icon name='favorite' color={Colors.appTheme} size={22} />
-                            :
-                            <Icon name='favorite' color='grey' size={22} />
-                        }
+                    <TouchableOpacity onPress={() => {}}>
+                        {item?.favorited ? (
+                            <Icon
+                                name="favorite"
+                                color={Colors.appTheme}
+                                size={22}
+                            />
+                        ) : (
+                            <Icon name="favorite" color="grey" size={22} />
+                        )}
                     </TouchableOpacity>
                     <Text style={style.count}>{item?.favoritesCount}</Text>
-                    <TouchableOpacity onPress={() => { }}>
-                        <Image source={appImages.comment} style={style.comment} />
+                    <TouchableOpacity onPress={() => {}}>
+                        <Image
+                            source={appImages.comment}
+                            style={style.comment}
+                        />
                     </TouchableOpacity>
-                    {(item?.comments) ?
-                        <Text style={style.count}>{item?.comments}</Text> : null}
+                    {item?.comments ? (
+                        <Text style={style.count}>{item?.comments}</Text>
+                    ) : null}
                 </View>
             </View>
         );
@@ -100,18 +122,23 @@ const HomeScreen = () => {
 
     return (
         <View style={style.container}>
-            <AppHeader label={'Feeds'}
+            <AppHeader
+                label={'Feeds'}
                 leftIcon={'camera'}
-                rightIcon={"file-text2"}
+                rightIcon={'file-text2'}
                 onPressLeft={imageHandler}
-                onPressRight={addPost} />
-            {feedsData ?
+                onPressRight={addPost}
+            />
+            {feedsData ? (
                 <FlatList
                     data={feedsData}
                     style={style.flatListStyles}
                     renderItem={({ item }) => <Item item={item} />}
-                    keyExtractor={(_, index) => index?.toString()} /> :
-                <AppIndicator size="large" />}
+                    keyExtractor={(_, index) => index?.toString()}
+                />
+            ) : (
+                <AppIndicator size="large" />
+            )}
         </View>
     );
 };
