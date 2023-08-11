@@ -29,7 +29,7 @@ appClient.interceptors.request.use(
 
 appClient.interceptors.response.use(
     function (response) {
-        // (__DEV__) ? console.log('API response : ', JSON.stringify(response?.data)) : null;
+        (__DEV__) ? console.log('API response : ', JSON.stringify(response?.data)) : null;
         // Any status code that lie within the range of 2xx cause this function to trigger
         // Do something with response data
         return response;

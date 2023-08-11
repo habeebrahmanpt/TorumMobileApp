@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, RefreshControl, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from 'navigation/StackParamList';
@@ -16,21 +16,39 @@ const HomeScreen = () => {
     const navigation =
         useNavigation<NativeStackNavigationProp<StackParamList>>();
     const [feedsData, setFeedsData] = useState<any>(null);
+    const [articlesCount, setArticlesCount] = useState<any>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        getFeeds();
+        getFeeds(10, 0);
     }, []);
 
-    const getFeeds = () => {
+    const getFeeds = async (limit: number, offset: number) => {
+        if (isLoading) return;
+        setIsLoading(true);
         apiClient
-            .getFeeds(20, 0)
+            .getFeeds(limit, offset)
             .then(response => {
-                setFeedsData(response.data?.articles);
+                setArticlesCount(response.data?.articlesCount)
+                if (offset == 0)
+                    setFeedsData(response.data?.articles);
+                else
+                    setFeedsData((prevData: any) => [...prevData, ...response.data?.articles]);
             })
             .catch(error => {
                 console.log('API error', error);
-            });
+            }).finally(() => {
+                setIsLoading(false);
+            })
     };
+    const onEndReached = () => {
+        if (feedsData && feedsData?.length < articlesCount) {
+            getFeeds(10, feedsData?.length);
+        }
+    }
+    const onRefresh = () => {
+        getFeeds(10, 0);
+    }
 
     const goToFeedDetails = (slug: any) => {
         navigation.navigate('FeedDetails', slug);
@@ -115,7 +133,6 @@ const HomeScreen = () => {
                 label={'Feeds'}
                 leftIcon={'camera'}
                 rightIcon={'file-text2'}
-                onPressLeft={imageHandler}
             />
             {feedsData ? (
                 <FlatList
@@ -123,6 +140,10 @@ const HomeScreen = () => {
                     style={style.flatListStyles}
                     renderItem={({ item }) => <Item item={item} />}
                     keyExtractor={(_, index) => index?.toString()}
+                    refreshControl={
+                        <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
+                    }
+                    onEndReached={onEndReached}
                 />
             ) : (
                 <AppIndicator size="large" />
